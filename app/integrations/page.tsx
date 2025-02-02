@@ -1,6 +1,7 @@
 "use client";
 
 import { FC, useState, useEffect } from "react";
+import { RootLayout } from "@/components/layout/root-layout";
 
 interface Integration {
   id: string;
@@ -95,47 +96,51 @@ const IntegrationsPage: FC = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto py-8 px-4">
-      <h1 className="font-mono text-xl mb-6 bg-gray-100 p-4 rounded-lg">
-        Integrations
-      </h1>
+    <RootLayout>
+      <div className="max-w-2xl mx-auto py-8 px-4">
+        <h1 className="font-mono text-xl mb-6 bg-gray-100 p-4 rounded-lg">
+          Integrations
+        </h1>
 
-      <div className="space-y-4">
-        {integrations.map((integration) => (
-          <div
-            key={integration.id}
-            className="flex items-center gap-3 py-2 px-3 border-l-4 border-gray-300"
-          >
-            <span className="font-mono">{integration.name}</span>
-            {integration.status === "coming_soon" && (
-              <span className="font-mono text-xs text-gray-500">
-                Coming Soon
-              </span>
-            )}
-            {integration.status === "available" && (
-              <>
-                {connectedServices.includes(integration.id) ? (
-                  <div className="ml-auto flex items-center gap-2">
-                    <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                    <span className="font-mono text-xs text-gray-500">
-                      Connected
-                    </span>
-                  </div>
-                ) : (
-                  <button
-                    onClick={() => handleConnect(integration.id)}
-                    disabled={isLoading === integration.id}
-                    className="font-mono text-blue-600 hover:text-blue-800 underline ml-auto disabled:opacity-50"
-                  >
-                    {isLoading === integration.id ? "Connecting..." : "Connect"}
-                  </button>
-                )}
-              </>
-            )}
-          </div>
-        ))}
+        <div className="space-y-4">
+          {integrations.map((integration) => (
+            <div
+              key={integration.id}
+              className="flex items-center gap-3 py-2 px-3 border-l-4 border-gray-300"
+            >
+              <span className="font-mono">{integration.name}</span>
+              {integration.status === "coming_soon" && (
+                <span className="font-mono text-xs text-gray-500">
+                  Coming Soon
+                </span>
+              )}
+              {integration.status === "available" && (
+                <>
+                  {connectedServices.includes(integration.id) ? (
+                    <div className="ml-auto flex items-center gap-2">
+                      <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                      <span className="font-mono text-xs text-gray-500">
+                        Connected
+                      </span>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => handleConnect(integration.id)}
+                      disabled={isLoading === integration.id}
+                      className="font-mono text-blue-600 hover:text-blue-800 underline ml-auto disabled:opacity-50"
+                    >
+                      {isLoading === integration.id
+                        ? "Connecting..."
+                        : "Connect"}
+                    </button>
+                  )}
+                </>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </RootLayout>
   );
 };
 
