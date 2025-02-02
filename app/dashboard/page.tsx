@@ -7,7 +7,7 @@ import { TodayFactsWidget } from "@/components/widgets/today-facts";
 const DashboardPage: FC = () => {
   return (
     <RootLayout>
-      <div className="max-w-[1200px] mx-auto py-8 px-4 h-full max-h-[500px]">
+      <div className="max-w-[1200px] mx-auto py-8 px-4 h-full max-h-[800px]">
         <div className="grid grid-cols-1 md:grid-cols-[1fr,400px] gap-4 h-full">
           <div className="h-full">
             <CalendarEventsWidget />

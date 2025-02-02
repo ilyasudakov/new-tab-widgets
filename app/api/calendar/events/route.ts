@@ -47,7 +47,7 @@ export async function GET() {
     );
 
     if (!response.ok) {
-      throw new Error("Failed to fetch events");
+      throw new Error("Failed to fetch events: " + response.statusText);
     }
 
     const data = await response.json();
